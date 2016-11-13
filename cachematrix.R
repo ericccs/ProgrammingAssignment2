@@ -5,8 +5,8 @@
 ## Create matrix obj that can cache the inverse
 makeCacheMatrix <- function(x = matrix()) {
     inverseMtx <- NULL
-    set <- function(mtxx) {
-        mtx <<- mtxx
+    set <- function(x) {
+        mtx <<- x
         inverseMtx <<- NULL
     }
     get <- function() mtx
@@ -21,13 +21,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Compute inverse and push to cache
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-    inv <- cMtx$getInverse()
+    inv <- x$getInverse()
     if(!is.null(inv)) {
         message("getting cached matrix")
         return(inv)
     }
-    dataMtx <- cMtx$get()
+    dataMtx <- x$get()
     inv <- solve(dataMtx, ...)
-    cMtx$setInverse(inv)
+    x$setInverse(inv)
     inv
 }
