@@ -1,8 +1,15 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Matrix inverse is a bit resource consuming 
+## so we create cache function to save the inverse matrix
+## sample run: 
+## > aa <- matrix(data = 1:4, nrow = 2, ncol = 2)
+## > bb <- makeCacheMatrix(aa)
+## > cc <- cacheSolve(bb)
+## re run the cacheSolve will return the cached object
+## to reset the matrix with another value and delete the cache:
+## > bb$set(aa)
 
-## Write a short comment describing this function
 ## Create matrix obj that can cache the inverse
+## return list contain the cached objects
 makeCacheMatrix <- function(x = matrix()) {
     inverseMtx <- NULL
     set <- function(x) {
@@ -16,11 +23,10 @@ makeCacheMatrix <- function(x = matrix()) {
     list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)
 }
 
-
-## Write a short comment describing this function
 ## Compute inverse and push to cache
+## the second time this is run, it'll be taken fporm the cache
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+    ## Return a matrix that is the inverse of 'x'
     inv <- x$getInverse()
     if(!is.null(inv)) {
         message("getting cached matrix")
