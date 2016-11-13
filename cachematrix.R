@@ -27,7 +27,7 @@ cacheSolve <- function(x, ...) {
         return(inv)
     }
     dataMtx <- cMtx$get()
-    inv <- solve(dataMtx)
+    inv <- solve(dataMtx, ...)
     cMtx$setInverse(inv)
     inv
 }
